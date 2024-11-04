@@ -29,5 +29,8 @@ html {
   height: 100%;
 }
 
-
+.mx-1 {
+  margin-left:1px;
+  margin-right:1px;
+}
 </style>

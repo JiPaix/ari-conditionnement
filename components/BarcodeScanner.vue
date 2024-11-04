@@ -50,11 +50,14 @@ emit('result', str);
   <div>
     <ClientOnly>
     <v-card :class="props.class">
-      <v-card-title>Scannez la référence article</v-card-title>
-      <v-card-subtitle>
-        <p>Le scanner peut parfois prendre du temps 💤</p>
-        <p class="font-weight-bold">Retirez la billette ou l'OF de sa pochette plastique pour aller plus vite ⚡
-        </p>
+      <v-card-title v-if="loaded">En cours de chargement</v-card-title>
+      <v-card-title v-else>Autorisez l'accès à votre camera</v-card-title>
+      <v-card-subtitle v-if="loaded">
+        <p class="d-flex align-self-center">Le scanner peut parfois prendre du temps <v-icon size="small" icon="mdi-sleep" class="zzz mx-1" /></p>
+        <p class="d-flex align-self-center font-weight-bold">Retirez la billette ou l'OF de sa pochette plastique pour aller plus vite <v-icon size="small" icon="mdi-lightning-bolt" class="bolt mx-1" /></p>
+      </v-card-subtitle>
+      <v-card-subtitle v-else>
+        <p class="d-flex items-center">Autorisez l'accès à votre caméra si demandé. <v-icon icon="mdi-camera" class="camera mx-1" /></p>
       </v-card-subtitle>
       <v-card-item>
         <div class="d-flex justify-center circular-container" v-if="!loaded">
@@ -84,5 +87,32 @@ emit('result', str);
 }
 .v-card-subtitle {
   white-space: normal;
+}
+.v-icon.zzz {
+  background: -moz-linear-gradient(top, #2400b2 0%, #2ce7e4 100%);
+  background: -webkit-linear-gradient(top, #2400b2 0%, #2ce7e4 100%);
+  background: linear-gradient(to bottom, #2400b2 0%, #2ce7e4 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.v-icon.bolt {
+  background: -moz-linear-gradient(top, #ff7b00 0%, #fff700 100%);
+  background: -webkit-linear-gradient(top, #ff7b00 0%, #fff700 100%);
+  background: linear-gradient(to bottom, #aaaaaa 0%, #fff700 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.v-icon.camera {
+  background: -moz-linear-gradient(left, #95a3b0 0%, #4a6b9d 100%);
+  background: -webkit-linear-gradient(left, #95a3b0 0%, #4a6b9d 100%);
+  background: linear-gradient(to right, #95a3b0 0%, #4a6b9d 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
