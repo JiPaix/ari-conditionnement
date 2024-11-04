@@ -71,6 +71,8 @@ emit('result', str);
       <v-card-actions v-if="dev">
         <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216799'})">N1</v-btn>
         <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216720'})">N6</v-btn>
+        <v-btn color="white" variant="flat" @click="() => onDecode({text: 'MAD01CGA3'})">MAD01CGA3</v-btn>
+        <v-btn color="white" variant="flat" @click="() => onDecode({text: '001231234'})">001231234</v-btn>
       </v-card-actions>
     </v-card>
   </ClientOnly>
