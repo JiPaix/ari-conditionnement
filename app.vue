@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+useHead({
+  title: 'Scanneur de référence'
+})
   const result = ref<null|string>(null)
 
   const isDev = computed(() => typeof import.meta.hot !== 'undefined')
