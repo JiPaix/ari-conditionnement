@@ -60,7 +60,6 @@ emit('result', str);
         <div class="d-flex justify-center circular-container" v-if="!loaded">
           <v-progress-circular size="200" width="10" indeterminate></v-progress-circular>
         </div>
-        
         <StreamBarcodeReader
         v-show="loaded"
         :no-front-cameras="true"

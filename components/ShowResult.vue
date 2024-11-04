@@ -19,10 +19,10 @@ const name = computed(() =>
 <template>
   <div>
     <ClientOnly>
-    <v-card :class="props.class">
+    <v-card :class="class">
       <v-card-title>Article trouvé !</v-card-title>
       <v-card-subtitle>
-        <p>{{ props.article }}</p>
+        <p>{{ article }}</p>
         <p v-if="name" class="font-weight-bold">{{ name }}</p>
       </v-card-subtitle>
       <v-card-item>
