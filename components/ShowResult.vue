@@ -20,13 +20,22 @@ const name = computed(() =>
   <div>
     <ClientOnly>
     <v-card :class="class">
-      <v-card-title>Article trouvé !</v-card-title>
-      <v-card-subtitle>
+      <v-card-title v-if="article" class="text-h4">Article trouvé !</v-card-title>
+      <v-card-title v-else class="text-h4">Oups!</v-card-title>
+      <v-card-subtitle v-if="article">
         <p>{{ article }}</p>
-        <p v-if="name" class="font-weight-bold">{{ name }}</p>
+        <p v-if="name" class="font-weight-bold text-h6">{{ name }}</p>
+      </v-card-subtitle>
+      <v-card-subtitle v-else>
+        <p>Une erreur s'est produite, veuillez ressayer</p>
       </v-card-subtitle>
       <v-card-item>
-        item
+        <div class="d-flex justify-center">
+          <div v-if="article">
+            x
+          </div>
+          <v-icon v-else size="128" icon="mdi-alert-circle" color="red"></v-icon>
+        </div>
       </v-card-item>
       <v-card-actions>
         <v-btn class="reset" size="x-large" color="info" variant="flat" @click="emit('reset')">RECOMMENCER</v-btn>
@@ -34,5 +43,9 @@ const name = computed(() =>
     </v-card>
   </ClientOnly>
   </div>
-
 </template>
+<style lang="css" scoped>
+.reset {
+  width: 100%;
+}
+</style>

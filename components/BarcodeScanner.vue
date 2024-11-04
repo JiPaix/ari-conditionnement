@@ -49,36 +49,50 @@ emit('result', str);
 <template>
   <div>
     <ClientOnly>
-    <v-card :class="props.class">
-      <v-card-title v-if="loaded">En cours de chargement</v-card-title>
-      <v-card-title v-else>Autorisez l'accès à votre camera</v-card-title>
-      <v-card-subtitle v-if="loaded">
-        <p class="d-flex align-self-center">Le scanner peut parfois prendre du temps <v-icon size="small" icon="mdi-sleep" class="zzz mx-1" /></p>
-        <p class="d-flex align-self-center font-weight-bold">Retirez la billette ou l'OF de sa pochette plastique pour aller plus vite <v-icon size="small" icon="mdi-lightning-bolt" class="bolt mx-1" /></p>
-      </v-card-subtitle>
-      <v-card-subtitle v-else>
-        <p class="d-flex items-center">Autorisez l'accès à votre caméra si demandé. <v-icon icon="mdi-camera" class="camera mx-1" /></p>
-      </v-card-subtitle>
-      <v-card-item>
-        <div class="d-flex justify-center circular-container" v-if="!loaded">
-          <v-progress-circular size="200" width="10" indeterminate></v-progress-circular>
-        </div>
-        <StreamBarcodeReader
-        v-show="loaded"
-        :no-front-cameras="true"
-        :ms-between-decoding="50"
-        @decode="onDecode"
-        @loaded="loaded = true"
-        />
-      </v-card-item>
-      <v-card-actions v-if="dev">
-        <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216799'})">N1</v-btn>
-        <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216720'})">N6</v-btn>
-        <v-btn color="white" variant="flat" @click="() => onDecode({text: 'MAD01CGA3'})">MAD01CGA3</v-btn>
-        <v-btn color="white" variant="flat" @click="() => onDecode({text: '001231234'})">001231234</v-btn>
-      </v-card-actions>
-    </v-card>
-  </ClientOnly>
+      <v-card :class="props.class">
+        <v-card-title v-if="loaded" class="text-h4">
+          <p>Scan en cours...</p>
+          <v-progress-linear
+            color="red"
+            indeterminate
+            height="1"
+          />
+        </v-card-title>
+        <v-card-title v-else class="text-h4">
+          <p>Chargement du scanneur</p>
+          <v-progress-linear
+            color="info"
+            indeterminate
+            height="1"
+          />
+        </v-card-title>
+        <v-card-subtitle v-if="loaded">
+          <p class="d-flex align-self-center">Le scanner peut parfois prendre du temps <v-icon size="small" icon="mdi-sleep" class="zzz mx-1" /></p>
+          <p class="d-flex align-self-center font-weight-bold">Retirez la billette ou l'OF de sa pochette plastique pour aller plus vite <v-icon size="small" icon="mdi-lightning-bolt" class="bolt mx-1" /></p>
+        </v-card-subtitle>
+        <v-card-subtitle v-else>
+          <p class="d-flex items-center">Autorisez l'accès à votre caméra si demandé. <v-icon icon="mdi-camera" class="camera mx-1" /></p>
+        </v-card-subtitle>
+        <v-card-item>
+          <div class="d-flex justify-center circular-container" v-if="!loaded">
+            <v-progress-circular size="200" width="10" indeterminate></v-progress-circular>
+          </div>
+          <StreamBarcodeReader
+          v-show="loaded"
+          :no-front-cameras="true"
+          :ms-between-decoding="50"
+          @decode="onDecode"
+          @loaded="loaded = true"
+          />
+        </v-card-item>
+        <v-card-actions v-if="dev">
+          <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216799'})">N1</v-btn>
+          <v-btn color="white" variant="flat" @click="() => onDecode({text: '332A32216720'})">N6</v-btn>
+          <v-btn color="white" variant="flat" @click="() => onDecode({text: 'MAD01CGA3'})">MAD01CGA3</v-btn>
+          <v-btn color="white" variant="flat" @click="() => onDecode({text: '001231234'})">001231234</v-btn>
+        </v-card-actions>
+      </v-card>
+    </ClientOnly>
   </div>
 </template>
 <style lang="css" scoped>
