@@ -29,7 +29,7 @@ const name = computed(() =>
         item
       </v-card-item>
       <v-card-actions>
-        <v-btn color="white" variant="flat" @click="emit('reset')">RESET</v-btn>
+        <v-btn class="reset" size="x-large" color="info" variant="flat" @click="emit('reset')">RECOMMENCER</v-btn>
       </v-card-actions>
     </v-card>
   </ClientOnly>
